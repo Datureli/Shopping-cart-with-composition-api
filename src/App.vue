@@ -1,10 +1,12 @@
 <template>
+<div>
   <div id="nav">
     <Navbar />
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-    <router-view />
+
   </div>
+    <router-view />
+</div>
+
 </template>
 
 <script lang="ts">
@@ -25,16 +27,13 @@ export default defineComponent({
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #b6c9db;
 }
 
-#nav {
-  padding: 30px;
-}
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #437bb3;
 }
 
 #nav a.router-link-exact-active {
