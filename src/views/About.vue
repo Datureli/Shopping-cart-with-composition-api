@@ -1,60 +1,74 @@
 <template>
   <section>
-    <div class="form-container">
-      <h2>My Shopping List App</h2>
-      <form @submit.prevent="addItem">
-        <div>
-          <label> Product Name</label>
-          <br />
-          <input v-model="state.input" type="text" />
-        </div>
-        <div>
-          <button type="submit" class="submit">Add Item</button>
-        </div>
-      </form>
-    </div>
-    <div class="list-container">
-      <ul v-for="(Item, index) in state.Items" :key="index">
-        <li>
-          {{ Item }}
-          <span style="float: right; padding-right: 10px">
-            <button @click="removeItem(index)">X</button>
-          </span>
-        </li>
-      </ul>
+    <div style="display: flex">
+      <div class="form-container" style="border: 2px solid black">
+        <form @submit.prevent="addItem">
+          <div>
+            <label>List Title</label>
+            <input type="text" v-model="state.newShoppingTitle" />
+          </div>
+
+          <div>
+            <label>Product Name</label>
+            <input v-model="state.input" type="text" />
+          </div>
+          <div>
+            <button type="submit" class="submit">Add product</button>
+          </div>
+        </form>
+      </div>
+      <div class="list-container">
+        <ul v-for="(Item, index) in state.Items" :key="index">
+          <li>
+            {{ Item }}
+            <span style="float: right; padding-right: 10px">
+              <button @click="removeItem(index)">X</button>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h2>List title: {{ state.newShoppingTitle }}</h2>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-import { reactive, defineComponent} from "vue";
+import { reactive, defineComponent } from "vue";
 export default {
-setup() {
+  setup() {
     const { state, addItem, removeItem } = ItemList();
     return { state, addItem, removeItem };
-  }
+  },
 };
 function ItemList() {
   let state = reactive({
     input: "",
-    Items: ["Grocery"]
+    newShoppingTitle: "",
+    Items: ["item example"],
   });
- let addItem = () => {
+  let addItem = () => {
     state.Items.push(state.input);
     state.input = "";
   };
 
- let removeItem = i => {
-    state.Items.splice(i, 1);
+  let removeItem = (index) => {
+    state.Items.splice(index, 1);
   };
   return { state, addItem, removeItem };
 }
 </script>
 <style scoped>
 input {
-  width: 20%;
+  width: 150px;
   height: 30px;
-  border: 2px solid green;
+  margin: 5px 35px;
+  border: 2px solid #008000;
+}
+h2,
+label {
+  color: #000000;
 }
 .submit {
   margin: 10px;
@@ -65,6 +79,7 @@ input {
   color: white;
 }
 ul li {
+  color: black;
   list-style: none;
   border: 2px solid green;
   width: 30%;
@@ -73,5 +88,11 @@ ul li {
   text-align: center;
   justify-content: center;
   margin-top: 10px;
+}
+.form-container {
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  height: 400px;
 }
 </style>
