@@ -1,17 +1,21 @@
 <template>
   <nav class="s-sidebar__nav">
-    <router-link to="/">Home</router-link> |
+    <router-link to="/">Home</router-link>
     <router-link to="/about">About</router-link>
   </nav>
 </template>
 
 <style>
+nav {
+  height: 100%;
+  display: grid;
+}
 .s-sidebar__nav {
   position: fixed;
   top: 0;
   overflow: hidden;
+  padding: 30px;
   transition: all 0.3s ease-in;
-  height: 100%;
   background: #243e56;
 }
 
