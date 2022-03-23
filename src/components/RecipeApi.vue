@@ -1,17 +1,18 @@
 <template>
-    <div>
+  <Suspense>
 
-    </div>
+  </Suspense>
 </template>
 
 <script>
-import {ref} from 'vue'
+import { ref } from "vue";
 export default {
-    setup() {
-        const result = ref(null)
+  async setup() {
+    const result = await axios.get("url");
 
-        fetch('url')
-        .then(response)
-    },
-}
+    return {
+      result,
+    };
+  },
+};
 </script>
